@@ -1,10 +1,7 @@
 <script setup>
-import MateriaList from './components/MateriaList.vue';
-import OfflineBanner from './components/OfflineBanner.vue';
+import { RouterView } from 'vue-router';
 </script>
 
-
 <template>
-  <OfflineBanner />
-  <MateriaList />
+  <RouterView />
 </template>

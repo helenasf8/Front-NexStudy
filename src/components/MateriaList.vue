@@ -7,6 +7,8 @@ const store = useMateriasStore();
 onMounted(() => {
   store.fetchMaterias();
 });
+
+console.log("materias no componente:", store.materias);
 </script>
 
 <template>

@@ -1,19 +1,27 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import Login from '../components/Login.vue';
+import Login from '../components/LoginComponent.vue';
 import { useAuthStore } from '../stores/auth';
 import MateriaList from '@/components/MateriaList.vue';
-
+import Teste from '@/components/Teste.vue';
 const routes = [
     {
-    path: '/',
+    path: '/materia',
     name: 'materia',
     component: MateriaList,
-    meta: { requiresAuth: true },
+    //meta: { requiresAuth: true },
+    //meta: { isAuthenticated: true },
   },
   {
     path: '/login',
     name: 'login',
     component: Login,
+  },
+  {
+    path: '/teste',
+    name: 'teste',
+    component: Teste,
+    //meta: { requiresAuth: true },
+    //meta: { isAuthenticated: true },
   },
 ];
 

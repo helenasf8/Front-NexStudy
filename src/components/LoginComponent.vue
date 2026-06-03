@@ -32,6 +32,7 @@
       <button type="submit" :disabled="loading">
         {{ loading ? 'Entrando...' : 'Entrar' }}
       </button>
+
     </form>
   </div>
 </template>
@@ -52,9 +53,12 @@ const errorMessage = ref('');
 async function handleLogin() {
   loading.value = true;
   errorMessage.value = '';
+  console.log("entrou");
   try {
     await authStore.login(email.value, password.value);
-    router.push('/');
+    console.log("login realizado com sucesso");
+    //router.push('/materia');
+    router.push('/teste');
   } catch (err) {
     errorMessage.value =
       err.response?.data?.detail ??

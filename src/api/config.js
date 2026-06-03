@@ -26,13 +26,13 @@ apiClient.interceptors.response.use(
     if (
       error.response?.status === 401 &&
       !original._retry &&
-      !original.url?.includes('/api/token')
+      !original.url?.includes('/token/')
     ) {
       original._retry = true;
       const refreshToken = localStorage.getItem('refresh_token');
       if (refreshToken) {
         try {
-          const { data } = await axios.post(`${BASE_URL}/api/token/refresh`, {
+          const { data } = await axios.post(`${BASE_URL}/token/refresh/`, {
             refresh_token: refreshToken,
           });
           localStorage.setItem('access_token', data.access_token);

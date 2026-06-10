@@ -1,7 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
+
 import Login from '../components/LoginComponent.vue'
-import { useAuthStore } from '../stores/auth'
-import MateriaList from '@/components/MateriaList.vue'
+import Home from '../views/Home.vue'
+import Profile from '../views/Profile.vue'
+
 const routes = [
   {
     path: '/',
@@ -9,13 +11,18 @@ const routes = [
     component: Login,
   },
   {
-    path: '/materia',
-    name: 'materia',
-    component: MateriaList,
+    path: '/home',
+    name: 'home',
+    component: Home
   },
+  {
+    path: '/profile',
+    name: 'profile',
+    component: Profile
+  }
 ]
 
-const router = createRouter({
+coconst router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes,
 })

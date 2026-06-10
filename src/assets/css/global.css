@@ -27,7 +27,7 @@ body {
   margin-bottom: 2vw;
 }
 
-.login button {
+button {
     color: rgb(93, 93, 94);
     font-size: 1.3rem;
     font-weight: 600;
@@ -39,12 +39,12 @@ body {
     transition: all ease 0.1s;
 }
 
-.login button:hover {
+button:hover {
   color: rgb(98, 97, 97);
   cursor: pointer;
 }
 
-.login button:focus {
+button:focus {
   background: black;
   color: rgb(253, 253, 251);
 }

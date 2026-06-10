@@ -57,7 +57,7 @@ async function handleLogin() {
   try {
     await authStore.login(email.value, password.value);
     console.log("login realizado com sucesso");
-    router.push('/materia');
+    router.push('/home');
   } catch (err) {
     errorMessage.value =
       err.response?.data?.detail ??

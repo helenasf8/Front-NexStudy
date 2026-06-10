@@ -100,6 +100,12 @@
 <style>
 .home-info {
     margin: 3vw 2vw;
+    column-gap: 1vw;
+}
+
+.home-info ul {
+    display: flex;
+    align-content: center;
 }
 
 .home-info li {
@@ -108,7 +114,7 @@
     flex: 1;
     color: #edf1fe;
     font-size: 1.2em;
-    padding: 2vw;
+    padding: 1.2vw;
     border-radius: 20px;
     border: 2px solid rgb(218, 223, 223, 0.5);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -145,13 +151,14 @@
     margin: 3vw 2vw;
     border: 2px solid rgb(218, 223, 223);
     border-radius: 15px;
-    padding: 2vw;
+    padding: 1.5vw;
     box-shadow: 0 2px 4px rgba(139, 138, 138, 0.1);
 }
 
 h2 {
     margin-bottom: 1vw;
     font-weight: bold;
+    font-size: 1.3em;
 }
 
 .home-container-progress div {
@@ -159,12 +166,12 @@ h2 {
     justify-content: space-between;
     margin-bottom: 0.5vw;
     color: rgb(71, 71, 71);
-    font-size: 1.1em;
+    font-size: 0.9em;
 }
 
 .progress-bar {
     width: 100%;
-    height: 15px;
+    height: 12px;
     background-color: #e5e7eb;
     border-radius: 999px;
     overflow: hidden;
@@ -187,7 +194,7 @@ ul.achivements-list {
     background: rgb(233, 238, 238, 0.8);
     border-radius: 15px;
     border: 2px solid rgb(218, 223, 223);
-    padding: 1vw 2vw;
+    padding: 0.8vw 1.5vw;
     display: flex;
     gap: 15px;
     align-items: center;

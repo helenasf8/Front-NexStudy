@@ -1,12 +1,14 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
+import Login from '../components/LoginComponent.vue'
 import Home from '../views/Home.vue'
 import Profile from '../views/Profile.vue'
 
 const routes = [
   {
     path: '/',
-    redirect: '/home'
+    name: 'login',
+    component: Login,
   },
   {
     path: '/home',
@@ -20,9 +22,16 @@ const routes = [
   }
 ]
 
-const router = createRouter({
-  history: createWebHistory(),
-  routes
+coconst router = createRouter({
+  history: createWebHistory(import.meta.env.BASE_URL),
+  routes,
+})
+
+router.beforeEach((to) => {
+  const authStore = useAuthStore()
+  if (to.meta.requiresAuth && !authStore.isAuthenticated) {
+    return { name: 'login' }
+  }
 })
 
 export default router

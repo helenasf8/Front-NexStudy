@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Login from '../components/LoginComponent.vue'
 import Home from '../views/Home.vue'
 import Profile from '../views/Profile.vue'
+import { useAuthStore } from '@/stores/auth.js'
 
 const routes = [
   {
@@ -22,7 +23,7 @@ const routes = [
   }
 ]
 
-coconst router = createRouter({
+const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes,
 })

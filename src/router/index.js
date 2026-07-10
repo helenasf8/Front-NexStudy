@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 import Login from '../views/LoginView.vue'
 import Home from '../views/HomeView.vue'
+import Planner from '../views/PlannerView.vue'
 import { useAuthStore } from '@/stores/auth.js'
 
 const routes = [
@@ -16,6 +17,11 @@ const routes = [
     component: Home,
     meta: { requiresAuth: true },
   },
+  {
+    path: '/planner',
+    name: 'planner',
+    component: Planner,
+  }
 ]
 
 const router = createRouter({

@@ -132,19 +132,19 @@
 }
 
 .orange {
-    background: linear-gradient(135deg, #ff8c00, #fd5e1f);
+    background: linear-gradient(135deg, #0e20c2, #0960e2);
 }
 
 .red {
-    background: linear-gradient(135deg, #e00b39, #f30f79);
+    background: linear-gradient(135deg, #9328eb, #a801eb);
 }
 
 .blue {
-    background: linear-gradient(135deg, #0581d4, #258beb);
+    background: linear-gradient(135deg, #e00b99, #e92581);
 }
 
 .green {
-    background: linear-gradient(135deg, #1edb5d, #139e52);
+    background: linear-gradient(135deg, #db1e5d, #9e135f);
 }
 
 .home-container-progress,

@@ -1,56 +1,10 @@
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #f5f5f5;
   color: #333;
-  min-height: 100vh;
-
-.container-login {
-  margin: 7vw 0;
-}
-
-.login {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 2vw;
-}
-
-form, form div {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 1vw;
-}
-
-form label {
-  color: black;
-}
-
-form input {
-  border-radius: 10px;
-  border: solid 2px;
-  padding: 8px;
-  border-color: rgba(175, 177, 177, 0.5);
-  outline: none;
-}
-
-.enter {
-  color: rgb(249, 249, 252);
-  background: rgb(53, 52, 52);
-  font-size: 1.3rem;
-  font-weight: 600;
-  border: none;
-  border-radius: 10px;
-  width: 100%;
-  padding: 10px;
-  cursor: pointer;
-  transition: all ease 0.1s;
-}
-
-.enter:hover {
-  background: rgb(60, 60, 67);
 }

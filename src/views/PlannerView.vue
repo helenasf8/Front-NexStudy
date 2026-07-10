@@ -22,7 +22,7 @@
               {{ m.descricao }}
             </option>
           </select>
-          <input v-model="form.topico" type="text" placeholder="Tópico" />
+          <input v-model="form.topico" type="text" placeholder="Tópico" required />
         </div>
 
         <div class="form-row">

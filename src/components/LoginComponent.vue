@@ -7,39 +7,30 @@
 
       <div class="field">
         <label for="email">Email</label>
-        <input
-          id="email"
-          v-model="email"
-          type="email"
-          placeholder="seu@email.com"
-          required
-          autocomplete="email"
-        />
+        <input id="email" v-model="email" type="email" placeholder="seu@email.com" required autocomplete="email" />
       </div>
 
       <div class="field">
         <label for="password">Senha</label>
-        <input
-          id="password"
-          v-model="password"
-          type="password"
-          placeholder="••••••••"
-          required
-          autocomplete="current-password"
-        />
+        <input id="password" v-model="password" type="password" placeholder="••••••••" required
+          autocomplete="current-password" />
       </div>
 
       <button type="submit" :disabled="loading">
         {{ loading ? 'Entrando...' : 'Entrar' }}
       </button>
 
+      <p>
+      Não tem uma conta?
+      <router-link to="/register">Cadastre-se</router-link>
+    </p>
     </form>
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue';
-import { useRouter } from 'vue-router';
+import { useRouter, RouterLink } from 'vue-router';
 import { useAuthStore } from '@/stores/auth';
 
 const router = useRouter();

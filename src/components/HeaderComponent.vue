@@ -1,13 +1,23 @@
 <script setup>
-import { RouterLink } from 'vue-router'
+import { RouterLink, useRouter } from 'vue-router'
+import { useAuthStore } from '@/stores/auth'
+
+const authStore = useAuthStore()
+const router = useRouter()
+
+function logout() {
+    authStore.logout()
+    router.push('/')
+}
 </script>
+
 <template>
     <header>
         <h1>NexStudy</h1>
         <nav>
             <ul>
                 <li>
-                     <RouterLink to="/home">Home</RouterLink>
+                    <RouterLink to="/home">Home</RouterLink>
                 </li>
                 <li>
                     <RouterLink to="#">Metas diárias</RouterLink>
@@ -23,6 +33,11 @@ import { RouterLink } from 'vue-router'
                 </li>
                 <li>
                     <RouterLink to="/profile">Perfil</RouterLink>
+                </li>
+                <li>
+                    <button @click="logout" class="logout-button">
+                        Sair
+                    </button>
                 </li>
             </ul>
         </nav>
@@ -43,6 +58,7 @@ ul {
     list-style: none;
     display: flex;
     gap: 3vw;
+    align-items: center;
 }
 
 ul li a {
@@ -58,5 +74,22 @@ ul li a {
 ul li a:hover {
     background-color: rgb(23, 24, 24);
     color: #edf1fe;
+}
+
+.logout-button {
+    background-color: rgb(23, 24, 24);
+    color: #edf1fe;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 1.3em;
+    transition: background-color 0.1s, color 0.1s;
+}
+
+.logout-button:hover {
+    background-color: rgb(23, 24, 24, 0.8);
+    color: #ffffff;
 }
 </style>

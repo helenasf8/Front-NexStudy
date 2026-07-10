@@ -23,7 +23,7 @@ function logout() {
                     <RouterLink to="#">Metas diárias</RouterLink>
                 </li>
                 <li>
-                    <RouterLink to="#">Planilha</RouterLink>
+                    <RouterLink to="/planner">Planilha</RouterLink>
                 </li>
                 <li>
                     <RouterLink to="#">Notas</RouterLink>

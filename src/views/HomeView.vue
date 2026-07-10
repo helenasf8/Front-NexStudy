@@ -147,7 +147,8 @@
     background: linear-gradient(135deg, #1edb5d, #139e52);
 }
 
-.home-container-progress, .home-container-achievement  {
+.home-container-progress,
+.home-container-achievement {
     margin: 3vw 2vw;
     border: 2px solid rgb(218, 223, 223);
     border-radius: 15px;
@@ -178,16 +179,17 @@ h2 {
 }
 
 .progress {
-    width: 60%; /*controla o progresso */
+    width: 60%;
+    /*controla o progresso */
     height: 100%;
     background: #2563eb;
     border-radius: 999px;
 }
 
 ul.achivements-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
-  gap: 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+    gap: 1rem;
 }
 
 .achivements-list li {

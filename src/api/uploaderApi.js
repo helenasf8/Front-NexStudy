@@ -6,7 +6,7 @@ export default {
     formData.append('file', file);
     if (description) formData.append('description', description);
 
-    return apiClient.post('/api/media/images/', formData, {
+    return apiClient.post('/media/images/', formData, {
       // undefined remove o 'application/json' padrão do apiClient,
       // deixando o navegador definir o Content-Type correto (multipart + boundary)
       headers: { 'Content-Type': undefined },

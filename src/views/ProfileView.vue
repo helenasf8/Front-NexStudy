@@ -113,31 +113,24 @@
 
 <script setup>
 import { computed, onMounted } from 'vue';
-import { useRouter } from 'vue-router';
 import { useUserStore } from '../stores/user';
-import { useAuthStore } from '../stores/auth';
 import { gradientDoTema } from '../constants/temas';
 
-const router = useRouter();
 const userStore = useUserStore();
-const authStore = useAuthStore();
 
 onMounted(() => {
   userStore.fetchMe();
 });
 
-const inicial = computed(() => userStore.user?.name?.[0]?.toUpperCase() ?? '?');
-
-function handleLogout() {
-  authStore.logout();
-  router.push('/');
-}
+const inicial = computed(() => {
+  const fonte = userStore.user?.name || userStore.user?.email || '?';
+  return fonte[0]?.toUpperCase() ?? '?';
+});
 </script>
 
 <style scoped>
-/* mesmo style que já tínhamos, sem mudanças */
 .perfil {
-  margin: 2vw 4vw;
+  margin: 2vw 10vw;
   display: flex;
   flex-direction: column;
   gap: 1.5vw;

@@ -26,7 +26,7 @@ function logout() {
                     <RouterLink to="/planner">Planilha</RouterLink>
                 </li>
                 <li>
-                    <RouterLink to="#">Notas</RouterLink>
+                    <RouterLink to="/kanban">Notas</RouterLink>
                 </li>
                 <li>
                     <RouterLink to="#">IA Assistente</RouterLink>
@@ -68,28 +68,30 @@ ul li a {
     font-size: 1.3em;
     padding: 8px 15px;
     border-radius: 10px;
-    transition: color 0.1s, background-color 0.1s;
+    transition: background-color 0.2s ease;
 }
 
 ul li a:hover {
-    background-color: rgb(23, 24, 24);
+    background-color: rgb(23, 24, 24, 0.9);
     color: #edf1fe;
 }
 
 .logout-button {
-    background-color: rgb(23, 24, 24);
-    color: #edf1fe;
-    border: none;
-    padding: 8px 15px;
-    border-radius: 10px;
-    cursor: pointer;
-    font-weight: 500;
-    font-size: 1.3em;
-    transition: background-color 0.1s, color 0.1s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #fef2f2;
+  color: #dc2626;
+  border: 1px solid #fecaca;
+  font-size: 0.95em;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
 .logout-button:hover {
-    background-color: rgb(23, 24, 24, 0.8);
-    color: #ffffff;
+  background: #fee2e2;
 }
 </style>

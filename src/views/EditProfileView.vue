@@ -216,7 +216,7 @@ async function handleSave() {
     }
 
     await userStore.updateMe(payload)
-    router.push('/perfil')
+    router.push('/profile')
   } catch (err) {
     console.error(err.response?.data ?? err)
     errorMsg.value = 'Erro ao salvar as alterações. Tente novamente.'

@@ -8,7 +8,6 @@ const DIA_SEMANA_MAP = {
   Segunda: 'SEG', Terça: 'TER', Quarta: 'QUA', Quinta: 'QUI',
   Sexta: 'SEX', Sábado: 'SAB', Domingo: 'DOM',
 };
-
 const DIA_SEMANA_LABEL = Object.fromEntries(
   Object.entries(DIA_SEMANA_MAP).map(([nome, codigo]) => [codigo, nome])
 );
@@ -52,7 +51,14 @@ export const useCronogramaStore = defineStore('cronograma', () => {
     return (totalMin / 60).toFixed(1);
   }
 
-  async function addItem({ materia, topico, diaLabel, horario, duracao }) {
+  // kanban: itens agrupados por status, já ordenados pela coluna "ordem"
+  function itensPorStatus(status) {
+    return itens.value
+      .filter((i) => i.status === status)
+      .sort((a, b) => a.ordem - b.ordem);
+  }
+
+  async function addItem({ materia, topico, diaLabel, horario, duracao, status }) {
     const payload = {
       cronograma: cronogramaId.value,
       materia,
@@ -60,17 +66,26 @@ export const useCronogramaStore = defineStore('cronograma', () => {
       dia_semana: DIA_SEMANA_MAP[diaLabel],
       horario,
       duracao_minutos: duracao,
-      concluido: false,
+      status: status ?? 'PARA_FAZER',
     };
     const { data } = await cronogramaItemApi.create(payload);
     itens.value.push({ ...data, diaLabel: DIA_SEMANA_LABEL[data.dia_semana] });
+    return data;
+  }
+
+  // kanban: atualização genérica de qualquer campo (status, ordem, etc.)
+  async function persistItem(id, payload) {
+    const item = itens.value.find((i) => i.id === id);
+    if (!item) return;
+    const { data } = await cronogramaItemApi.update(id, payload);
+    Object.assign(item, data);
   }
 
   async function toggleConcluido(id) {
     const item = itens.value.find((i) => i.id === id);
     if (!item) return;
-    const { data } = await cronogramaItemApi.update(id, { concluido: !item.concluido });
-    item.concluido = data.concluido;
+    const novoStatus = item.concluido ? 'PARA_FAZER' : 'CONCLUIDO';
+    await persistItem(id, { status: novoStatus });
   }
 
   async function deleteItem(id) {
@@ -80,6 +95,7 @@ export const useCronogramaStore = defineStore('cronograma', () => {
 
   return {
     itens, materias, loading,
-    fetchInicial, itensPorDia, totalHoras, addItem, toggleConcluido, deleteItem,
+    fetchInicial, itensPorDia, totalHoras, itensPorStatus,
+    addItem, persistItem, toggleConcluido, deleteItem,
   };
 });

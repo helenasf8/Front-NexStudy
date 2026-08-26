@@ -7,6 +7,7 @@ import Kanban from '../views/KanbanView.vue'
 import Profile from '../views/ProfileView.vue'
 import EditProfile from '../views/EditProfileView.vue'
 import { useAuthStore } from '@/stores/auth.js'
+import GoalView from '@/views/GoalView.vue'
 
 const routes = [
   {
@@ -24,6 +25,11 @@ const routes = [
     path: '/planner',
     name: 'planner',
     component: Planner,
+  },
+  {
+    path: '/goal',
+    name: 'goal',
+    component: GoalView,
   },
   {
     path: '/kanban',

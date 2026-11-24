@@ -69,6 +69,12 @@ import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useAuthStore } from '@/stores/auth';
 
+const mostrarSenha = ref(false);
+
+function alternarSenha() {
+  mostrarSenha.value = !mostrarSenha.value;
+}
+
 const router = useRouter();
 const authStore = useAuthStore();
 

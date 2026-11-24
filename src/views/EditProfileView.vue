@@ -14,13 +14,14 @@
             <img v-if="fotoPreview" :src="fotoPreview" alt="Foto de perfil" />
             <span v-else class="mdi mdi-account"></span>
           </div>
-          <button class="camera-btn" @click="fileInput.click()">
+          <button class="camera-btn" :disabled="saving" @click="fileInput.click()">
             <span class="mdi mdi-camera"></span>
           </button>
           <input
             ref="fileInput"
             type="file"
             accept="image/png, image/jpeg"
+            :disabled="saving"
             class="hidden-input"
             @change="onFileChange"
           />
@@ -133,7 +134,7 @@
 </template>
 
 <script setup>
-import { ref, reactive, onMounted } from 'vue'
+import { ref, reactive, onMounted, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useUserStore } from '../stores/user'
 import materiaApi from '../api/materiaApi'
@@ -172,6 +173,9 @@ const fileInput = ref(null)
 const selectedFile = ref(null)
 const fotoPreview = ref(null)
 const saving = ref(false)
+const errorMsg = ref('')
+let previewObjectUrl
+let attachmentKey
 
 onMounted(async () => {
   const { data } = await materiaApi.list()
@@ -187,22 +191,30 @@ onMounted(async () => {
     form.melhor_horario = u.melhor_horario ?? ''
     form.meta_diaria_minutos = u.meta_diaria_minutos ?? 60
     form.tema_cor = u.tema_cor ?? 'AZUL'
-    fotoPreview.value = u.foto?.url ?? null
+    if (!selectedFile.value) fotoPreview.value = u.foto?.url ?? null
   }
 })
 
 function onFileChange(e) {
   const file = e.target.files[0]
   if (!file) return
+  if (previewObjectUrl) URL.revokeObjectURL(previewObjectUrl)
   selectedFile.value = file
-  fotoPreview.value = URL.createObjectURL(file)
+  attachmentKey = undefined
+  errorMsg.value = ''
+  previewObjectUrl = URL.createObjectURL(file)
+  fotoPreview.value = previewObjectUrl
 }
 
-const errorMsg = ref('')
+onUnmounted(() => {
+  if (previewObjectUrl) URL.revokeObjectURL(previewObjectUrl)
+})
 
 async function handleSave() {
+  if (saving.value) return
   saving.value = true
   errorMsg.value = ''
+  let uploadingPhoto = false
   try {
     const payload = {
       ...form,
@@ -211,15 +223,19 @@ async function handleSave() {
     }
 
     if (selectedFile.value) {
-      const attachmentKey = await userStore.uploadFotoFile(selectedFile.value)
+      uploadingPhoto = true
+      attachmentKey ??= await userStore.uploadFotoFile(selectedFile.value)
       payload.foto_attachment_key = attachmentKey
+      uploadingPhoto = false
     }
 
     await userStore.updateMe(payload)
     router.push('/profile')
   } catch (err) {
     console.error(err.response?.data ?? err)
-    errorMsg.value = 'Erro ao salvar as alterações. Tente novamente.'
+    errorMsg.value = uploadingPhoto
+      ? 'Erro ao enviar a foto. Selecione uma imagem JPG ou PNG e tente novamente.'
+      : 'Erro ao salvar as alterações. Tente novamente.'
   } finally {
     saving.value = false
   }

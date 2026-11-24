@@ -6,7 +6,9 @@ import Planner from '../views/PlannerView.vue'
 import Kanban from '../views/KanbanView.vue'
 import Profile from '../views/ProfileView.vue'
 import EditProfile from '../views/EditProfileView.vue'
+import GoalView from '@/views/GoalView.vue'
 import { useAuthStore } from '@/stores/auth.js'
+import ChatView from '@/views/ChatView.vue'
 
 const routes = [
   {
@@ -24,11 +26,19 @@ const routes = [
     path: '/planner',
     name: 'planner',
     component: Planner,
+    meta: { requiresAuth: true },
+  },
+  {
+    path: '/goal',
+    name: 'goal',
+    component: GoalView,
+    meta: { requiresAuth: true },
   },
   {
     path: '/kanban',
     name: 'kanban',
     component: Kanban,
+    meta: { requiresAuth: true },
   },
   {
     path: '/profile',
@@ -42,7 +52,18 @@ const routes = [
     component: EditProfile,
     meta: { requiresAuth: true },
   },
+  {
+  path: '/chat',
+  name: 'chat',
+  component: ChatView,
+  meta: { requiresAuth: true },
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    redirect: '/',
+  },
 ]
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes,
@@ -51,12 +72,10 @@ const router = createRouter({
 router.beforeEach((to) => {
   const authStore = useAuthStore()
 
-  // Usuário não logado tentando acessar uma página protegida
   if (to.meta.requiresAuth && !authStore.isAuthenticated) {
     return { name: 'login' }
   }
 
-  // Usuário logado tentando acessar a tela de login
   if (to.name === 'login' && authStore.isAuthenticated) {
     return { name: 'home' }
   }

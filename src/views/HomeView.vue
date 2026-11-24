@@ -99,7 +99,7 @@
 
 <style>
 .home-info {
-    margin: 3vw 2vw;
+    margin: 3vw 4vw;
     column-gap: 1vw;
 }
 
@@ -149,7 +149,7 @@
 
 .home-container-progress,
 .home-container-achievement {
-    margin: 3vw 2vw;
+    margin: 3vw 4vw;
     border: 2px solid rgb(218, 223, 223);
     border-radius: 15px;
     padding: 1.5vw;
@@ -196,7 +196,7 @@ ul.achivements-list {
     background: rgb(233, 238, 238, 0.8);
     border-radius: 15px;
     border: 2px solid rgb(218, 223, 223);
-    padding: 0.8vw 1.5vw;
+    padding: 0.6vw 1.2vw;
     display: flex;
     gap: 15px;
     align-items: center;

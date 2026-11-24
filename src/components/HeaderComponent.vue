@@ -29,7 +29,7 @@ function logout() {
           <RouterLink to="/kanban">Notas</RouterLink>
         </li>
         <li>
-          <RouterLink to="#">IA Assistente</RouterLink>
+          <RouterLink to="/chat">IA Assistente</RouterLink>
         </li>
         <li>
           <RouterLink to="/profile">Perfil</RouterLink>

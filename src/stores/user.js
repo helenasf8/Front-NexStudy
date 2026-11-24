@@ -25,6 +25,9 @@ export const useUserStore = defineStore('user', () => {
 
   async function uploadFotoFile(file) {
     const { data } = await uploaderApi.uploadImage(file, 'Foto de perfil');
+    if (!data?.attachment_key) {
+      throw new Error('A API não retornou a chave da foto enviada.');
+    }
     return data.attachment_key;
   }
 

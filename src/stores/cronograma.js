@@ -18,21 +18,34 @@ export const useCronogramaStore = defineStore('cronograma', () => {
   const materias = ref([]);
   const loading = ref(false);
 
-  async function fetchInicial() {
-    loading.value = true;
-    try {
-      const { data: cronogramas } = await cronogramaApi.list();
-      const lista = cronogramas.results ?? cronogramas;
-      cronogramaId.value = lista[0]?.id ?? null;
+async function fetchInicial() {
+  loading.value = true;
 
-      const { data: materiasData } = await materiaApi.list();
-      materias.value = materiasData.results ?? materiasData;
+  try {
+    const { data: materiasData } = await materiaApi.list();
 
-      await fetchItens();
-    } finally {
-      loading.value = false;
-    }
+    materias.value = materiasData.results ?? materiasData;
+
+    console.log('Matérias carregadas:', materias.value);
+
+    const { data: cronogramas } = await cronogramaApi.list();
+
+    const lista = cronogramas.results ?? cronogramas;
+
+    cronogramaId.value = lista[0]?.id ?? null;
+
+    await fetchItens();
+
+  } catch (error) {
+    console.error(
+      'Erro ao carregar planilha:',
+      error.response?.data ?? error
+    );
+
+  } finally {
+    loading.value = false;
   }
+}
 
   async function fetchItens() {
     const { data } = await cronogramaItemApi.list();

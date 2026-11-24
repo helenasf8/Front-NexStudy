@@ -407,8 +407,7 @@ function selecionada(alt) {
   --verde: #16a34a;
   --vermelho: #dc2626;
 
-  max-width: 780px;
-  margin: 0 auto;
+  margin: 0 5vw;
   padding: 40px 24px;
   box-sizing: border-box;
   font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;

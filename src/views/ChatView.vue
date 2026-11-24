@@ -136,8 +136,7 @@ function novaConversa() {
 
 <style scoped>
 main {
-  max-width: 780px;
-  margin: 0 auto;
+  margin: 0 10vw;
   padding: 40px 24px;
   color: #0a0a0a;
   font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
